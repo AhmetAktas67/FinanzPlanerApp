@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using FinanzPlanerApp.Data;
 
 namespace FinanzPlanerApp
 {
@@ -18,6 +19,10 @@ namespace FinanzPlanerApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            using (var db = new AppDbContext())
+            {
+                db.Database.EnsureCreated();
+            }
 
             return builder.Build();
         }
