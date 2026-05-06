@@ -3,10 +3,98 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FinanzPlanerApp.Views.SettingsPage"
              Title="SettingsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="22">
+          
+
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+             Text="Kategorie hinzufügen"
+             FontSize="18"
+             FontAttributes="Bold" />
+
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Entry Placeholder="Neue Kategorie" FontSize="16" ></Entry>
+
+                    <Button Grid.Column="1" 
+                            Text="+"
+                            CornerRadius="12"
+                            ></Button>
+                </Grid>
+
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    Text="Kategorie auswählen"
+                    FontSize="18"
+                    FontAttributes="Bold"></Label>
+
+                <Picker
+                    Title="Kategorie auswählen"
+                    FontSize="16"
+                    ></Picker>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+             Text="Ausgabengrenze"
+             FontSize="18"
+             FontAttributes="Bold"></Label>
+
+                <Entry
+                    Placeholder="0,00€"
+                    Keyboard="Numeric"
+                    FontSize="16"></Entry>
+
+                <Label Text="Gültigkeit"
+                       FontSize="16"
+                       FontAttributes="Bold"></Label>
+
+
+                <RadioButton Content="Nur für diese Monat" IsChecked="True"></RadioButton>
+
+                <RadioButton Content="Für immer"></RadioButton>
+
+                <Button Text="Grenze Speichern"
+                        HeightRequest="48"
+                        CornerRadius="12"></Button>
+            </VerticalStackLayout>
+
+
+
+
+            <Grid ColumnDefinitions="*,Auto">
+                <VerticalStackLayout>
+                    <Label
+                        Text="Benachrichtigung"
+                        FontSize="18"
+                        FontAttributes="Bold"></Label>
+
+                    <Label
+                    Text="Warnung bei überschrittener Ausgabengrenze "
+                    FontSize="14"
+                    ></Label>
+
+
+                </VerticalStackLayout>
+
+                <Switch
+                    Grid.Column="1"
+                    IsToggled="True"
+                    VerticalOptions="Center"></Switch>
+            </Grid>
+
+
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>
