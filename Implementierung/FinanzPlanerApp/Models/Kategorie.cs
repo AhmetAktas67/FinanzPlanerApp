@@ -14,9 +14,9 @@ namespace FinanzPlanerApp.Models
        
         
         public string Name { get; set; } = string.Empty;
-        public string Ausgabengrenze { get; set; }
+        public decimal? Ausgabengrenze { get; set; }
 
-        public List<Ausgabe> Ausgaben {  get; set; }
+        public List<Ausgabe> Ausgaben { get; set; } = new();
 
 
     }

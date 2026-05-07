@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinanzPlanerApp.Data
 {
-    public class AppDbContext : DbContext
+    public partial class AppDbContext : DbContext
     {
         public DbSet<Kategorie> Kategorien => Set<Kategorie>();
         public DbSet<Ausgabe> Ausgaben => Set<Ausgabe>();
@@ -18,5 +18,22 @@ namespace FinanzPlanerApp.Data
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "finanzplaner.db");
             optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
+
+        public void InitializeDatabase()
+        {
+            Database.EnsureCreated();
+
+            if (!Kategorien.Any())
+            {
+                Kategorien.AddRange(
+                    new Kategorie { Name = "Essen" },
+                    new Kategorie { Name = "Tank" },
+                    new Kategorie { Name = "Einkauf" },
+                    new Kategorie { Name = "Freizeit" }
+                );
+
+                SaveChanges();
+            }
+       }
     }
 }
