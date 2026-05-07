@@ -35,6 +35,7 @@
                     FontAttributes="Bold"></Label>
 
                 <Picker
+                    x:Name="KategoriePicker"
                     Title="Kategorie auswählen"
                     FontSize="16"
                     ></Picker>

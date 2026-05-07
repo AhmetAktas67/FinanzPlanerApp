@@ -71,37 +71,31 @@
 
                 </Grid>
 
-                <ScrollView Grid.Row="1">
-                    <VerticalStackLayout Spacing="0">
+                <CollectionView
+                 x:Name="HomeKategorienCollectionView"
+                 Grid.Row="1">
 
-                        <Grid Padding="14" ColumnDefinitions="*,Auto">
-                            <Label Text="Essen" FontSize="18" />
-                            <Label Grid.Column="1" Text="0,00 €" FontSize="18" FontAttributes="Bold" />
-                        </Grid>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Spacing="0">
 
-                        <BoxView HeightRequest="1" />
+                                <Grid Padding="14" ColumnDefinitions="*,Auto">
+                                    <Label Text="{Binding Name}" FontSize="18" />
 
-                        <Grid Padding="14" ColumnDefinitions="*,Auto">
-                            <Label Text="Tank" FontSize="18" />
-                            <Label Grid.Column="1" Text="0,00 €" FontSize="18" FontAttributes="Bold" />
-                        </Grid>
+                                    <Label
+                            Grid.Column="1"
+                            Text="0,00 €"
+                            FontSize="18"
+                            FontAttributes="Bold" />
+                                </Grid>
 
-                        <BoxView HeightRequest="1" />
+                                <BoxView HeightRequest="1" />
 
-                        <Grid Padding="14" ColumnDefinitions="*,Auto">
-                            <Label Text="Einkauf" FontSize="18" />
-                            <Label Grid.Column="1" Text="0,00 €" FontSize="18" FontAttributes="Bold" />
-                        </Grid>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
 
-                        <BoxView HeightRequest="1" />
-
-                        <Grid Padding="14" ColumnDefinitions="*,Auto">
-                            <Label Text="Freizeit" FontSize="18" />
-                            <Label Grid.Column="1" Text="0,00 €" FontSize="18" FontAttributes="Bold" />
-                        </Grid>
-
-                    </VerticalStackLayout>
-                </ScrollView>
+                </CollectionView>
 
 
 
