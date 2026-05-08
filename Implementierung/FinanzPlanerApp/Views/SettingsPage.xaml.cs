@@ -52,4 +52,48 @@ public partial class SettingsPage : ContentPage
 
         await LadeKategorien();
     }
+
+    private async void GrenzeSpeichernButton_Clicked(object sender, EventArgs e)
+    {
+        if (KategoriePicker.SelectedItem == null)
+        {
+            await DisplayAlert("Fehler", "Bitte Kategorie auswählen", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(AusgabengrenzeEntry.Text))
+        {
+            await DisplayAlert("Fehler", "Bitte Grenze eingeben", "OK");
+            return;
+        }
+
+        decimal grenze;
+
+        bool zahlOk = decimal.TryParse(AusgabengrenzeEntry.Text, out grenze);
+
+        if (zahlOk == false)
+        {
+            await DisplayAlert("Fehler", "Bitte eine gültige Zahl eingeben", "OK");
+            return;
+        }
+
+        Kategorie ausgewaehlteKategorie = (Kategorie)KategoriePicker.SelectedItem;
+
+        using var db = new AppDbContext();
+
+        Kategorie? kategorieAusDb = db.Kategorien
+            .FirstOrDefault(k => k.KategorieId == ausgewaehlteKategorie.KategorieId);
+
+        if (kategorieAusDb == null)
+        {
+            await DisplayAlert("Fehler", "Kategorie wurde nicht gefunden", "OK");
+            return;
+        }
+
+        kategorieAusDb.Ausgabengrenze = grenze;
+
+        db.SaveChanges();
+
+        await DisplayAlert("Gespeichert", "Ausgabengrenze wurde gespeichert", "OK");
+    }
 }

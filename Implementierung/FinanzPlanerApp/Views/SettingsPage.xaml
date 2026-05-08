@@ -50,6 +50,7 @@
              FontAttributes="Bold"></Label>
 
                 <Entry
+                    x:Name="AusgabengrenzeEntry"
                     Placeholder="0,00€"
                     Keyboard="Numeric"
                     FontSize="16"></Entry>
@@ -65,7 +66,9 @@
 
                 <Button Text="Grenze Speichern"
                         HeightRequest="48"
-                        CornerRadius="12"></Button>
+                        CornerRadius="12"
+                        x:Name="GrenzeSpeichernButton"
+                        Clicked="GrenzeSpeichernButton_Clicked"></Button>
             </VerticalStackLayout>
 
 
