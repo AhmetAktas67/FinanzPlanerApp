@@ -1,7 +1,8 @@
 using FinanzPlanerApp.Data;
 using FinanzPlanerApp.Models;
-using FinanzPlanerApp.Views;
+
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace FinanzPlanerApp.Views;
 
@@ -29,5 +30,26 @@ public partial class SettingsPage : ContentPage
 
         KategoriePicker.ItemsSource = kategorien;
         KategoriePicker.ItemDisplayBinding = new Binding("Name");
+    }
+
+    private async void KategorieHinzufuegenButton_Clicked(object sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(KategorieNameEntry.Text))
+        {
+            await DisplayAlert("Fehler", "Bitte Kategorie eingeben", "OK");
+            return;
+        }
+
+        using var db = new AppDbContext();
+
+        Kategorie neuekategorie = new Kategorie();
+        neuekategorie.Name = KategorieNameEntry.Text;
+
+        db.Kategorien.Add(neuekategorie);
+        db.SaveChanges();
+
+        KategorieNameEntry.Text = "";
+
+        await LadeKategorien();
     }
 }

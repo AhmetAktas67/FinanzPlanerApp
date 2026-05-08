@@ -17,11 +17,13 @@
 
 
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-                    <Entry Placeholder="Neue Kategorie" FontSize="16" ></Entry>
+                    <Entry Placeholder="Neue Kategorie" FontSize="16" x:Name="KategorieNameEntry" ></Entry>
 
                     <Button Grid.Column="1" 
+                            x:Name="KategorieHinzufuegenButton"
                             Text="+"
                             CornerRadius="12"
+                            Clicked="KategorieHinzufuegenButton_Clicked"
                             ></Button>
                 </Grid>
 

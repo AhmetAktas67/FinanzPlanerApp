@@ -83,10 +83,10 @@
                                     <Label Text="{Binding Name}" FontSize="18" />
 
                                     <Label
-                            Grid.Column="1"
-                            Text="0,00 €"
-                            FontSize="18"
-                            FontAttributes="Bold" />
+                                    Grid.Column="1"
+                                    Text="0,00 €"
+                                    FontSize="18"
+                                    FontAttributes="Bold" />
                                 </Grid>
 
                                 <BoxView HeightRequest="1" />
