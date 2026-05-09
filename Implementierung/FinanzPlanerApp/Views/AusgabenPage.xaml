@@ -8,13 +8,13 @@
     <Grid RowDefinitions="Auto,*" Padding="16" RowSpacing="12" >
         <Button Grid.Row="0"
                 Text="+"
-                HeightRequest="50"
-                WidthRequest="25"
                 HorizontalOptions="EndAndExpand"
-                CornerRadius="12"></Button>
+                CornerRadius="12"
+                x:Name="AusgabeHinzufügen"
+                Clicked="AusgabeHinzufügen_Clicked"></Button>
 
         <CollectionView
-        x:Name="KategorienCollectionView"
+        x:Name="AusgabenCollectionView"
         Grid.Row="1">
 
             <CollectionView.ItemTemplate>
@@ -22,13 +22,15 @@
                     <VerticalStackLayout Spacing="0">
 
                         <Grid Padding="14" ColumnDefinitions="*,Auto">
-                            <Label
-                            Text="{Binding Name}"
-                            FontSize="18" />
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Kategorie.Name}" FontSize="18" />
+                                <Label Text="{Binding Beschreibung}" FontSize="13" />
+                                <Label Text="{Binding Datum, StringFormat='{0:dd.MM.yyyy}'}" FontSize="12" />
+                            </VerticalStackLayout>
 
                             <Label
                             Grid.Column="1"
-                            Text="0,00 €"
+                           Text="{Binding Betrag, StringFormat='{0:0.00} €'}"
                             FontSize="18"
                             FontAttributes="Bold" />
                         </Grid>

@@ -34,6 +34,37 @@ namespace FinanzPlanerApp.Data
 
                 SaveChanges();
             }
-       }
+
+
+            if (!Ausgaben.Any())
+            {
+                Kategorie? essen = Kategorien.FirstOrDefault(k => k.Name == "Essen");
+                Kategorie? tank = Kategorien.FirstOrDefault(k => k.Name == "Tank");
+
+                if (essen != null)
+                {
+                    Ausgaben.Add(new Ausgabe
+                    {
+                        Betrag = 24.99m,
+                        Datum = DateTime.Now,
+                        Beschreibung = "McDonalds",
+                        KategorieID = essen.KategorieId
+                    });
+                }
+
+                if (tank != null)
+                {
+                    Ausgaben.Add(new Ausgabe
+                    {
+                        Betrag = 65.40m,
+                        Datum = DateTime.Now,
+                        Beschreibung = "Shell Tankstelle",
+                        KategorieID = tank.KategorieId
+                    });
+                }
+
+                SaveChanges();
+            }
+        }
     }
 }

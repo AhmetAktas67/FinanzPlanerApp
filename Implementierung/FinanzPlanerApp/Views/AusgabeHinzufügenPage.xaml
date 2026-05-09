@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinanzPlanerApp.Views.AusgabeHinzufügenPage"
+             >
+   
+    <VerticalStackLayout Padding="26" Spacing="15">
+
+        <Label Text="Betrag:"
+               FontSize="16"
+               FontAttributes="Bold"></Label>
+        <Entry
+            x:Name="BetragEntry"
+            Placeholder="0,00 €"
+            Keyboard="Numeric"
+            
+            ></Entry>
+
+        <Label Text="Kategorie:"
+               FontSize="16"
+                 FontAttributes="Bold"></Label>
+        <Picker
+            x:Name="KategoriePicker"
+            Title="Kategorie auswählen"></Picker>
+
+        <Label Text="Datum:"
+               FontSize="16"
+                 FontAttributes="Bold"></Label>
+        <DatePicker
+            x:Name="DatumPicker"></DatePicker>
+
+        <Label Text="Beschreibung:"
+               FontSize="16"
+                 FontAttributes="Bold"
+               ></Label>
+        <Editor x:Name="BeschreibungEditor"
+                Placeholder="Beschreibung eingeben ..."
+                HeightRequest="100"></Editor>
+
+       
+        <Button
+            Text="Bestätigen"
+            HeightRequest="48"
+            CornerRadius="12"
+            x:Name="BestätigenButton"
+            
+            
+            Clicked="BestätigenButton_Clicked"></Button>
+    </VerticalStackLayout>
+</ContentPage>

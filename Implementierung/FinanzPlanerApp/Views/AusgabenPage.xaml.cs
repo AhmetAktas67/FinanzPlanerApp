@@ -15,17 +15,23 @@ public partial class AusgabenPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await LadeKategorien();
+        await LadeAusgaben();
     }
 
-    private async Task LadeKategorien()
+    private async Task LadeAusgaben()
     {
         using var db = new AppDbContext();
 
-        var kategorien = await db.Kategorien
-            .OrderBy(k => k.Name)
+        var ausgaben = await db.Ausgaben
+            .Include(a => a.Kategorie)
+            .OrderByDescending(a => a.Datum)
             .ToListAsync();
 
-        KategorienCollectionView.ItemsSource = kategorien;
+        AusgabenCollectionView.ItemsSource = ausgaben;
+    }
+
+    private async void AusgabeHinzufügen_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AusgabeHinzufügenPage());
     }
 }
