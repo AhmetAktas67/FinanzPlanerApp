@@ -40,6 +40,10 @@ public partial class AusgabenPage : ContentPage
         var item = sender as SwipeItem;
         var ausgaben = item.BindingContext as Ausgabe;
 
+        if (ausgaben == null)
+            return;
+
+
         using var db = new AppDbContext();
 
         var ausgabeDb= db.Ausgaben.FirstOrDefault(x=>x.AusgabenID==ausgaben.AusgabenID);

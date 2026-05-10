@@ -65,7 +65,9 @@ public partial class HomePage : ContentPage
         {
             monate.Add(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
         }
-
+       
+        MonatPicker.SelectedIndex = -1;
+        MonatPicker.ItemsSource = null;
         MonatPicker.ItemsSource = monate.Select(m => m.ToString("MMMM yyyy")).ToList();
         MonatPicker.SelectedIndex = 0;
     }
