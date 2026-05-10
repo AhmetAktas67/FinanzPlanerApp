@@ -19,9 +19,24 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout Spacing="0">
 
-                        <Grid Padding="14" ColumnDefinitions="*,Auto">
+                   <SwipeView>
+
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                  Text="Löschen"
+                                 
+                                
+                                  BackgroundColor="Red"
+                                  Invoked="AusgabeLöschen_Invoked" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <VerticalStackLayout Spacing="0">
+
+                        <Grid Padding="14" ColumnDefinitions="*,120">
                             <VerticalStackLayout>
                                 <Label Text="{Binding Kategorie.Name}" FontSize="18" />
                                 <Label Text="{Binding Beschreibung}" FontSize="13" />
@@ -38,6 +53,8 @@
                         <BoxView HeightRequest="1" />
 
                     </VerticalStackLayout>
+
+                   </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 

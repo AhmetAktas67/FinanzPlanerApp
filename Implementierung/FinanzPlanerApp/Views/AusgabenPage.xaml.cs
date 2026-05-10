@@ -34,4 +34,22 @@ public partial class AusgabenPage : ContentPage
     {
         await Navigation.PushAsync(new AusgabeHinzufügenPage());
     }
+
+    private async void AusgabeLöschen_Invoked(object sender, EventArgs e)
+    {
+        var item = sender as SwipeItem;
+        var ausgaben = item.BindingContext as Ausgabe;
+
+        using var db = new AppDbContext();
+
+        var ausgabeDb= db.Ausgaben.FirstOrDefault(x=>x.AusgabenID==ausgaben.AusgabenID);
+
+        if (ausgabeDb != null) 
+        {
+            db.Ausgaben.Remove(ausgabeDb);
+            db.SaveChanges();
+        }
+
+        await LadeAusgaben();
+    }
 }
