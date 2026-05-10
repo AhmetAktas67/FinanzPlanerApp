@@ -17,10 +17,11 @@
 
                 <Label
                   Text="Gesamtausgaben Monat" 
+                  
                   FontSize="20"
                   FontAttributes="Bold"
                    HorizontalOptions="Center" 
-                    x:Name="GbLabel"
+                   
            
                  ></Label>
 
@@ -30,7 +31,7 @@
                   FontSize="34"
                   FontAttributes="Bold"
                    HorizontalOptions="Center"   
-           
+                   x:Name="GbLabel"
                  ></Label>
 
                 <ProgressBar
@@ -59,12 +60,11 @@
                         Title="Monat auswählen"
                         HorizontalOptions="End"
                         WidthRequest="180"
-                        SelectedIndex="0">
+                        SelectedIndex="0"
+                        x:Name="MonatPicker"
+                        SelectedIndexChanged="MonatPicker_SelectedIndexChanged">
 
-                        <Picker.Items>
-                            <x:String>Juni 2026</x:String>
-                         
-                        </Picker.Items>
+                       
 
                     </Picker>
 
