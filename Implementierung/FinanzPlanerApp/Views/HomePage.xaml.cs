@@ -21,9 +21,27 @@ public partial class HomePage : ContentPage
     {
         using var db = new AppDbContext();
 
-        var kategorien = await db.Kategorien
-            .OrderBy(k => k.Name)
+        int monat = DateTime.Now.Month;
+        int jahr = DateTime.Now.Year;
+
+
+        var ausgaben = await db.Ausgaben
+            .Include(a=>a.Kategorie)
+              .Where(a => a.Datum.Month == monat && a.Datum.Year == jahr)
             .ToListAsync();
+
+        decimal gesamt = ausgaben.Sum(a => a.Betrag);
+
+        GbLabel.Text = gesamt.ToString("0.00") + "€";
+
+        var kategorien = ausgaben
+             .GroupBy(a => a.Kategorie.Name)
+             .Select(g => new
+             {
+                 Name = g.Key,
+                 Summe = g.Sum(a => a.Betrag)
+             })
+             .ToList();
 
         HomeKategorienCollectionView.ItemsSource = kategorien;
     }

@@ -19,13 +19,14 @@
                   Text="Gesamtausgaben Monat" 
                   FontSize="20"
                   FontAttributes="Bold"
-                   HorizontalOptions="Center"   
+                   HorizontalOptions="Center" 
+                    x:Name="GbLabel"
            
                  ></Label>
 
 
                 <Label
-                 Text="0,00 €" 
+                 Text="{Binding Summe, StringFormat='{0:0.00} €'}"
                   FontSize="34"
                   FontAttributes="Bold"
                    HorizontalOptions="Center"   
@@ -84,7 +85,7 @@
 
                                     <Label
                                     Grid.Column="1"
-                                    Text="0,00 €"
+                                   Text="{Binding Summe, StringFormat='{0:0.00} €'}"
                                     FontSize="18"
                                     FontAttributes="Bold" />
                                 </Grid>
