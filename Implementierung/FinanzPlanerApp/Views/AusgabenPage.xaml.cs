@@ -43,7 +43,7 @@ public partial class AusgabenPage : ContentPage
         if (ausgaben == null)
             return;
 
-
+         
         using var db = new AppDbContext();
 
         var ausgabeDb= db.Ausgaben.FirstOrDefault(x=>x.AusgabenID==ausgaben.AusgabenID);
@@ -55,5 +55,20 @@ public partial class AusgabenPage : ContentPage
         }
 
         await LadeAusgaben();
+    }
+
+    private async void AusgabenCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+        if (e.CurrentSelection.Count == 0)
+            return;
+
+         Ausgabe ausgabe = e.CurrentSelection[0] as Ausgabe;
+
+        if (ausgabe == null) return;
+
+        AusgabenCollectionView.SelectedItem = 0;
+
+        await Navigation.PushAsync(new AusgabeHinzufügenPage(ausgabe.AusgabenID));
     }
 }
