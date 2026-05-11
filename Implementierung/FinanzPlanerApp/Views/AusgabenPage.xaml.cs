@@ -57,17 +57,13 @@ public partial class AusgabenPage : ContentPage
         await LadeAusgaben();
     }
 
-    private async void AusgabenCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void AusgabeBearbeiten_Tapped(object sender, EventArgs e)
     {
+        var grid = sender as Grid;
+        var ausgabe = grid.BindingContext as Ausgabe;
 
-        if (e.CurrentSelection.Count == 0)
+        if (ausgabe == null)
             return;
-
-         Ausgabe ausgabe = e.CurrentSelection[0] as Ausgabe;
-
-        if (ausgabe == null) return;
-
-        AusgabenCollectionView.SelectedItem = 0;
 
         await Navigation.PushAsync(new AusgabeHinzufügenPage(ausgabe.AusgabenID));
     }
