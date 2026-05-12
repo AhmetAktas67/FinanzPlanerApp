@@ -74,7 +74,7 @@ public partial class AusgabeHinzufügenPage : ContentPage
 
             ausgabe.Betrag = decimal.Parse(BetragEntry.Text);
             ausgabe.Datum = DatumPicker.Date;
-            ausgabe.Beschreibung = BeschreibungEditor.Text;
+            ausgabe.Beschreibung = BeschreibungEditor.Text ?? "Keine Beschreibung";
             ausgabe.KategorieID = kategorie.KategorieId;
 
 
@@ -88,7 +88,7 @@ public partial class AusgabeHinzufügenPage : ContentPage
             {
                 ausgabe.Betrag = decimal.Parse(BetragEntry.Text);
                 ausgabe.Datum = DatumPicker.Date;
-                ausgabe.Beschreibung = BeschreibungEditor.Text;
+                ausgabe.Beschreibung = BeschreibungEditor.Text ?? "Keine Beschreibung";
                 ausgabe.KategorieID = kategorie.KategorieId;
             }
         }
