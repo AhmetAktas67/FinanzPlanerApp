@@ -11,13 +11,15 @@
 
             <VerticalStackLayout Spacing="8">
                 <Label
-             Text="Kategorie hinzufügen"
-             FontSize="18"
-             FontAttributes="Bold" />
+                 Text="Kategorie hinzufügen"
+                 FontSize="18"
+                 FontAttributes="Bold" />
+                
+               
 
 
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-                    <Entry Placeholder="Neue Kategorie" FontSize="16" x:Name="KategorieNameEntry" ></Entry>
+                    <Entry  Placeholder="Neue Kategorie ..." FontSize="16" x:Name="KategorieNameEntry" ></Entry>
 
                     <Button Grid.Column="1" 
                             x:Name="KategorieHinzufuegenButton"
@@ -26,6 +28,28 @@
                             Clicked="KategorieHinzufuegenButton_Clicked"
                             ></Button>
                 </Grid>
+
+
+                <Label
+                   Text="Kategorie löschen"
+                   FontSize="18"
+                   FontAttributes="Bold" />
+
+
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Picker Title="Kategorie auswählen"  FontSize="16" x:Name="KategorieLöschenPicker"  ></Picker>
+
+                    <Button Grid.Column="1" 
+                         x:Name="KategorieLöschenButton"
+                         Text="-"
+                         CornerRadius="12"
+                        Clicked="KategorieLöschenButton_Clicked"
+                     ></Button>
+                </Grid>
+
+
+
 
 
             </VerticalStackLayout>

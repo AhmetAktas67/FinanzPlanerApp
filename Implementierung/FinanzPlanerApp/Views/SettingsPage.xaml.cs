@@ -30,6 +30,10 @@ public partial class SettingsPage : ContentPage
 
         KategoriePicker.ItemsSource = kategorien;
         KategoriePicker.ItemDisplayBinding = new Binding("Name");
+
+
+        KategorieLöschenPicker.ItemsSource = kategorien;
+        KategorieLöschenPicker.ItemDisplayBinding = new Binding("Name");
     }
 
     private async void KategorieHinzufuegenButton_Clicked(object sender, EventArgs e)
@@ -95,5 +99,36 @@ public partial class SettingsPage : ContentPage
         db.SaveChanges();
 
         await DisplayAlert("Gespeichert", "Ausgabengrenze wurde gespeichert", "OK");
+    }
+
+    private async void KategorieLöschenButton_Clicked(object sender, EventArgs e)
+    {
+        if (KategorieLöschenPicker.SelectedItem == null)
+        {
+            await DisplayAlert("Fehler", "Bitte Kategorie zum Löschen auswählen", "OK");
+            return;
+        }
+
+         Kategorie ausgewaehlteKategorie = (Kategorie)KategorieLöschenPicker.SelectedItem;
+
+        using var db = new AppDbContext();
+
+          Kategorie? kategorieAusDb = await db.Kategorien
+            .FirstOrDefaultAsync(k => k.KategorieId == ausgewaehlteKategorie.KategorieId);
+
+        if (kategorieAusDb == null)
+        {
+            await DisplayAlert("Fehler", "Kategorie wurde nicht gefunden", "OK");
+            return;
+        }
+
+        db.Kategorien.Remove(kategorieAusDb);
+        await db.SaveChangesAsync();
+
+        KategorieLöschenPicker.SelectedItem = null;
+
+        await LadeKategorien();
+
+        await DisplayAlert("Gelöscht", "Kategorie wurde gelöscht", "OK");
     }
 }
