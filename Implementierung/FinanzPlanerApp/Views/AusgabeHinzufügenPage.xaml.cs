@@ -99,6 +99,38 @@ public partial class AusgabeHinzufügenPage : ContentPage
 
         db.SaveChanges();
 
+        await PruefeAusgabengrenze(kategorie.KategorieId);
+
         await Navigation.PopAsync();
+    }
+
+
+    private async Task PruefeAusgabengrenze(int kategorieId)
+    {
+        using var db = new AppDbContext();
+
+        var kategorie = db.Kategorien.FirstOrDefault(x => x.KategorieId == kategorieId);
+
+        if (kategorie == null)
+            return;
+
+        if (kategorie.Ausgabengrenze == null || kategorie.Ausgabengrenze <= 0)
+            return;
+
+        DateTime startMonat = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        DateTime endeMonat = startMonat.AddMonths(1);
+
+        decimal summe = db.Ausgaben
+            .Where(x => x.KategorieID == kategorieId)
+            .Where(x => x.Datum >= startMonat && x.Datum < endeMonat)
+            .Sum(x => x.Betrag);
+
+        if (summe > kategorie.Ausgabengrenze)
+        {
+            await DisplayAlert(
+                "Ausgabengrenze überschritten",
+                "Die Kategorie " + kategorie.Name + " ist über der Grenze.",
+                "OK");
+        }
     }
 }

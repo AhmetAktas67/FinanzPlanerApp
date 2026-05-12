@@ -99,7 +99,49 @@ public partial class SettingsPage : ContentPage
         db.SaveChanges();
 
         await DisplayAlert("Gespeichert", "Ausgabengrenze wurde gespeichert", "OK");
+
+        await PruefeAusgabengrenze(kategorieAusDb.KategorieId);
     }
+
+
+
+    private async Task PruefeAusgabengrenze(int kategorieId)
+    {
+        using var db = new AppDbContext();
+
+        Kategorie? kategorie = await db.Kategorien
+            .FirstOrDefaultAsync(k => k.KategorieId == kategorieId);
+
+        if (kategorie == null)
+        {
+            return;
+        }
+
+        if (kategorie.Ausgabengrenze == null || kategorie.Ausgabengrenze <= 0)
+        {
+            return;
+        }
+
+        DateTime startMonat = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        DateTime endeMonat = startMonat.AddMonths(1);
+
+        decimal summeAusgaben = await db.Ausgaben
+            .Where(a => a.KategorieID == kategorieId)
+            .Where(a => a.Datum >= startMonat && a.Datum < endeMonat)
+            .SumAsync(a => a.Betrag);
+
+        if (summeAusgaben > kategorie.Ausgabengrenze)
+        {
+            await DisplayAlert(
+                "Ausgabengrenze überschritten",
+                $"Die Kategorie \"{kategorie.Name}\" hat die Grenze überschritten.\n\n" +
+                $"Grenze: {kategorie.Ausgabengrenze:0.00} €\n" +
+                $"Ausgegeben: {summeAusgaben:0.00} €",
+                "OK"
+            );
+        }
+    }
+
 
     private async void KategorieLöschenButton_Clicked(object sender, EventArgs e)
     {
