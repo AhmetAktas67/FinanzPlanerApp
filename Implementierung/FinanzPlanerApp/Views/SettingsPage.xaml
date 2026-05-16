@@ -2,127 +2,81 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FinanzPlanerApp.Views.SettingsPage"
-             Title="SettingsPage">
+             Title="Einstellungen">
 
     <ScrollView>
-        <VerticalStackLayout Padding="16" Spacing="22">
-          
+        <VerticalStackLayout Padding="16" Spacing="20">
 
+            <Frame BackgroundColor="RosyBrown" CornerRadius="16" Padding="16">
+                <VerticalStackLayout Spacing="12">
 
-            <VerticalStackLayout Spacing="8">
-                <Label
-                 Text="Kategorie hinzufügen"
-                 FontSize="18"
-                 FontAttributes="Bold" />
-                
-               
+                   <Label
+                    Text="Kategorien"
+                    FontSize="20"
+                    FontAttributes="Bold" />
 
-
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-                    <Entry  Placeholder="Neue Kategorie ..." FontSize="16" x:Name="KategorieNameEntry" ></Entry>
-
-                    <Button Grid.Column="1" 
-                            x:Name="KategorieHinzufuegenButton"
-                            Text="+"
-                            CornerRadius="12"
-                            Clicked="KategorieHinzufuegenButton_Clicked"
-                            ></Button>
-                </Grid>
-
-
-                <Label
-                   Text="Kategorie löschen"
-                   FontSize="18"
-                   FontAttributes="Bold" />
-
-
-
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
-                    <Picker Title="Kategorie auswählen"  FontSize="16" x:Name="KategorieLöschenPicker"  ></Picker>
-
-                    <Button Grid.Column="1" 
-                         x:Name="KategorieLöschenButton"
-                         Text="-"
-                         CornerRadius="12"
-                        Clicked="KategorieLöschenButton_Clicked"
-                     ></Button>
-                </Grid>
-
-
-
-
-
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Spacing="8">
-                <Label
-                    Text="Kategorie auswählen"
-                    FontSize="18"
-                    FontAttributes="Bold"></Label>
-
-                <Picker
-                    x:Name="KategoriePicker"
-                    Title="Kategorie auswählen"
+                   <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                        <Entry
+                    x:Name="KategorieNameEntry"
+                    Placeholder="Neue Kategorie ..."
+                     PlaceholderColor="Black"       
                     FontSize="16"
-                    ></Picker>
-            </VerticalStackLayout>
+                          />
 
-            <VerticalStackLayout Spacing="8">
-                <Label
-             Text="Ausgabengrenze"
-             FontSize="18"
-             FontAttributes="Bold"></Label>
+                        <Button
+                    Grid.Column="1"
+                    Text="+"
+                    WidthRequest="50"
+                    CornerRadius="12"
+                    Clicked="KategorieHinzufuegenButton_Clicked" />
+                    </Grid>
 
-                <Entry
-                    x:Name="AusgabengrenzeEntry"
-                    Placeholder="0,00€"
-                    Keyboard="Numeric"
-                    FontSize="16"></Entry>
-
-                <Label Text="Gültigkeit"
-                       FontSize="16"
-                       FontAttributes="Bold"></Label>
-
-
-                <RadioButton Content="Nur für diese Monat" IsChecked="True"></RadioButton>
-
-                <RadioButton Content="Für immer"></RadioButton>
-
-                <Button Text="Grenze Speichern"
-                        HeightRequest="48"
-                        CornerRadius="12"
-                        x:Name="GrenzeSpeichernButton"
-                        Clicked="GrenzeSpeichernButton_Clicked"></Button>
-            </VerticalStackLayout>
-
-
-
-
-            <Grid ColumnDefinitions="*,Auto">
-                <VerticalStackLayout>
-                    <Label
-                        Text="Benachrichtigung"
-                        FontSize="18"
-                        FontAttributes="Bold"></Label>
-
-                    <Label
-                    Text="Warnung bei überschrittener Ausgabengrenze "
-                    FontSize="14"
-                    ></Label>
-
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Picker
+                    x:Name="KategorieLöschenPicker"
+                    Title="Kategorie löschen auswählen"
+                    FontSize="16"
+                     />
+                    
+                    <Button
+                    Grid.Column="1"
+                    Text="-"
+                    WidthRequest="50"
+                    CornerRadius="12"
+                    Clicked="KategorieLöschenButton_Clicked" />
+                    </Grid>
 
                 </VerticalStackLayout>
+            </Frame>
 
-                <Switch
-                    Grid.Column="1"
-                    IsToggled="True"
-                    VerticalOptions="Center"></Switch>
-            </Grid>
+            <Frame BackgroundColor="RosyBrown" CornerRadius="16" Padding="16">
+                <VerticalStackLayout Spacing="12">
 
+                   <Label
+                    Text="Ausgabengrenze"
+                    FontSize="20"
+                    FontAttributes="Bold" />
 
+                   <Picker
+                   x:Name="KategoriePicker"
+                    Title="Kategorie auswählen"
+                    FontSize="16" />
 
+                    <Entry
+                    x:Name="AusgabengrenzeEntry"
+                    Placeholder="0,00 €"
+                     PlaceholderColor="Black"
+                    Keyboard="Numeric"
+                    FontSize="16" />
 
+                    <Button
+                    Text="Grenze speichern"
+                    HeightRequest="48"
+                    CornerRadius="12"
+                    Clicked="GrenzeSpeichernButton_Clicked" />
 
+                </VerticalStackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
