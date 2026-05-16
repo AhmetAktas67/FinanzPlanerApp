@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinanzPlanerApp.Views.TutorialPage"
+             >
+
+
+
+
+    <Grid Padding="24,45,24,25" RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout  Grid.Row="0" Spacing="10" >
+            <Label
+            x:Name="TutorialTitelLabel"
+            Text="Willkommen bei FinanzPlaner"
+            FontSize="28"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+            <Label
+            x:Name="TutorialTextLabel"
+            Text="Behalte deine monatlichen Ausgaben einfach im Blick."
+            FontSize="16"
+            HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <CarouselView
+            x:Name="TutorialCarousel"
+            Grid.Row="1"
+            PositionChanged="TutorialCarousel_PositionChanged">
+
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>onboardingscreen_1.png</x:String>
+                    <x:String>onboardingscreen_2.png</x:String>
+                    <x:String>onboardingscreen_3.png</x:String>
+                </x:Array>
+            </CarouselView.ItemsSource>
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+                        <Image
+                        Source="{Binding .}"
+                        HeightRequest="360"
+                        Aspect="AspectFit" />
+
+                        
+
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" Padding="0,0,0,20">
+
+            <Button
+            x:Name="SkipButton"
+                Margin="0,0,0,10" 
+                WidthRequest="120"
+                HeightRequest="50"
+            Text="Skip"
+            HorizontalOptions="Start"
+           Clicked="SkipButton_Clicked" />
+
+            <Button
+            x:Name="StartButton"
+               Margin="0,0,0,10" 
+             Grid.Column="2"
+             Text="Starten"
+             IsVisible="False"
+             HeightRequest="50"
+                WidthRequest="120"
+              CornerRadius="12"
+             Clicked="StartButton_Clicked" />
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
