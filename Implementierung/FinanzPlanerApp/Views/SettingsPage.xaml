@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="16" Spacing="20">
 
-            <Frame BackgroundColor="RosyBrown" CornerRadius="16" Padding="16">
+            <Frame BackgroundColor="#D2B8A3" BorderColor="Black" CornerRadius="16" Padding="16">
                 <VerticalStackLayout Spacing="12">
 
                    <Label
@@ -49,7 +49,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BackgroundColor="RosyBrown" CornerRadius="16" Padding="16">
+            <Frame BorderColor="Black" BackgroundColor="#D2B8A3" CornerRadius="16" Padding="16">
                 <VerticalStackLayout Spacing="12">
 
                    <Label
