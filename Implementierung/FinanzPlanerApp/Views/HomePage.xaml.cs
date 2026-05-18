@@ -40,7 +40,8 @@ public partial class HomePage : ContentPage
              .Select(g => new
              {
                  Name = g.Key,
-                 Summe = g.Sum(a => a.Betrag)
+                 Summe = g.Sum(a => a.Betrag),
+                 Farbe = g.First().Kategorie.Farbe
              })
              .ToList();
 
