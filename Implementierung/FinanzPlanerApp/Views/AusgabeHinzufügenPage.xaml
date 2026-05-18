@@ -21,7 +21,8 @@
                  FontAttributes="Bold"></Label>
         <Picker
             x:Name="KategoriePicker"
-            Title="Kategorie auswählen"></Picker>
+            Title="Kategorie auswählen"
+            SelectedIndexChanged="KategoriePicker_SelectedIndexChanged" ></Picker>
 
         <Label Text="Datum:"
                FontSize="16"

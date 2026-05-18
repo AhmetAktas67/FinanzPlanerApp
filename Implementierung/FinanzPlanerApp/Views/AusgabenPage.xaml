@@ -45,23 +45,35 @@
                             
                          CornerRadius="16" >
 
-                            <VerticalStackLayout Spacing="0">
+                            <VerticalStackLayout  Spacing="0">
 
-                                <Grid Padding="14" ColumnDefinitions="*,100">
+                                <Grid Padding="14" ColumnDefinitions="Auto,*,100" ColumnSpacing="10">
+
 
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="AusgabeBearbeiten_Tapped" />
                                     </Grid.GestureRecognizers>
 
 
-                                    <VerticalStackLayout>
+                                    <BoxView
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    CornerRadius="8"
+                                      BackgroundColor="#D2B8A3"    
+                                    Color="{Binding Kategorie.Farbe}"
+                                    VerticalOptions="Center" />
+
+                                    
+
+
+                                    <VerticalStackLayout Grid.Column="1">
                                         <Label Text="{Binding Kategorie.Name}" FontSize="18" />
                                         <Label Text="{Binding Beschreibung}" FontSize="13" />
                                         <Label Text="{Binding Datum, StringFormat='{0:dd.MM.yyyy}'}" FontSize="12" />
                                     </VerticalStackLayout>
 
-                                    <Label
-                                    Grid.Column="1"
+                                    <Label 
+                                    Grid.Column="2"
                                    Text="{Binding Betrag, StringFormat='{0:0.00} €'}"
                                     FontSize="18"
                                     FontAttributes="Bold" />    

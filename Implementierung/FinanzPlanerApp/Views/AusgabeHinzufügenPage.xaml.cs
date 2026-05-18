@@ -133,4 +133,14 @@ public partial class AusgabeHinzufügenPage : ContentPage
                 "OK");
         }
     }
+
+    private void KategoriePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (KategoriePicker.SelectedItem == null)
+            return;
+
+        Kategorie kategorie = (Kategorie)KategoriePicker.SelectedItem;
+
+        KategoriePicker.BackgroundColor = Color.FromArgb(kategorie.Farbe).WithAlpha(0.35f);
+    }
 }
