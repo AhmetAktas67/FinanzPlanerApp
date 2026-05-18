@@ -18,6 +18,6 @@ namespace FinanzPlanerApp.Models
 
         public List<Ausgabe> Ausgaben { get; set; } = new();
 
-
+        public string Farbe { get; set; }= "#D2B8A3";
     }
 }

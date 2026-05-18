@@ -26,10 +26,10 @@ namespace FinanzPlanerApp.Data
             if (!Kategorien.Any())
             {
                 Kategorien.AddRange(
-                    new Kategorie { Name = "Essen" },
-                    new Kategorie { Name = "Tank" },
-                    new Kategorie { Name = "Einkauf" },
-                    new Kategorie { Name = "Freizeit" }
+                    new Kategorie { Name = "Essen", Farbe = "#FFB300" },
+                    new Kategorie { Name = "Tank", Farbe = "#1E88E5" },
+                    new Kategorie { Name = "Einkauf", Farbe = "#43A047" },
+                    new Kategorie { Name = "Freizeit", Farbe = "#D81B60" }
                 );
 
                 SaveChanges();

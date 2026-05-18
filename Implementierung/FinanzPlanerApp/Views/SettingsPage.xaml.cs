@@ -9,10 +9,41 @@ namespace FinanzPlanerApp.Views;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+    private string ausgewaehlteFarbe = "";
+
+    public List<string> farbCodes { get; set; } = new List<string>
+   {
+       "#E53935", // Rot
+        "#D81B60", // Pink
+        "#8E24AA", // Lila
+        "#5E35B1", // Dunkellila
+        "#3949AB", // Indigo
+        "#1E88E5", // Blau
+        "#039BE5", // Hellblau
+        "#00ACC1", // Cyan
+        "#00897B", // Türkis
+        "#43A047", // Grün
+        "#7CB342", // Hellgrün
+        "#C0CA33", // Limette
+        "#FDD835", // Gelb
+        "#FFB300", // Orange
+        "#F4511E", // Dunkelorange
+        "#EC407A", // Rosa
+        "#AB47BC", // Violett
+        "#7E57C2", // Lavendel
+        "#42A5F5", // Himmelblau
+        "#26C6DA", // Aqua
+        "#26A69A", // Mint
+        "#66BB6A", // Grün
+        "#9CCC65", // Hellgrün
+        "#FFA726", // Orange
+        "#EF5350"  // Hellrot
+    };
+    public SettingsPage()
 	{
 		InitializeComponent();
-	}
+        FarbPaletteCollectionView.ItemsSource = farbCodes;
+    }
 
     protected override async void OnAppearing()
     {
@@ -44,10 +75,18 @@ public partial class SettingsPage : ContentPage
             return;
         }
 
+        if (ausgewaehlteFarbe == "")
+        {
+            await DisplayAlert("Fehler", "Bitte Farbe auswählen", "OK");
+            return;
+        }
+
+
         using var db = new AppDbContext();
 
         Kategorie neuekategorie = new Kategorie();
         neuekategorie.Name = KategorieNameEntry.Text;
+        neuekategorie.Farbe = ausgewaehlteFarbe;
 
         db.Kategorien.Add(neuekategorie);
         db.SaveChanges();
@@ -173,4 +212,28 @@ public partial class SettingsPage : ContentPage
 
         await DisplayAlert("Gelöscht", "Kategorie wurde gelöscht", "OK");
     }
+
+
+    private void FarbPaletteCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (FarbPaletteCollectionView.SelectedItem == null)
+            return;
+
+        ausgewaehlteFarbe = FarbPaletteCollectionView.SelectedItem.ToString();
+    }
+
+    private void KategoriePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (KategoriePicker.SelectedItem == null)
+            return;
+
+        Kategorie kategorie = (Kategorie)KategoriePicker.SelectedItem;
+
+        KategoriePicker.BackgroundColor = Color.FromArgb(kategorie.Farbe).WithAlpha(0.35f);
+    }
+
+
+
+
+
 }

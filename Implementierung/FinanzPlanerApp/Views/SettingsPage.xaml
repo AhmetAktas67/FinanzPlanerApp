@@ -5,10 +5,10 @@
              Title="Einstellungen">
 
     <ScrollView>
-        <VerticalStackLayout Padding="16" Spacing="20">
+        <VerticalStackLayout Padding="16" Spacing="21">
 
             <Frame BackgroundColor="#D2B8A3" BorderColor="Black" CornerRadius="16" Padding="16">
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="15">
 
                    <Label
                     Text="Kategorien"
@@ -17,18 +17,18 @@
 
                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
                         <Entry
-                    x:Name="KategorieNameEntry"
-                    Placeholder="Neue Kategorie ..."
-                     PlaceholderColor="Black"       
-                    FontSize="16"
+                        x:Name="KategorieNameEntry"
+                        Placeholder="Neue Kategorie ..."
+                         PlaceholderColor="Black"       
+                        FontSize="16"
                           />
 
                         <Button
-                    Grid.Column="1"
-                    Text="+"
-                    WidthRequest="50"
-                    CornerRadius="12"
-                    Clicked="KategorieHinzufuegenButton_Clicked" />
+                        Grid.Column="1"
+                        Text="+"
+                        WidthRequest="50"
+                        CornerRadius="12"
+                        Clicked="KategorieHinzufuegenButton_Clicked" />
                     </Grid>
 
                     <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
@@ -36,6 +36,7 @@
                     x:Name="KategorieLöschenPicker"
                     Title="Kategorie löschen auswählen"
                     FontSize="16"
+
                      />
                     
                     <Button
@@ -46,11 +47,43 @@
                     Clicked="KategorieLöschenButton_Clicked" />
                     </Grid>
 
+
+
+                    <ScrollView VerticalOptions="Start"   Orientation="Horizontal">
+                        <CollectionView
+                        x:Name="FarbPaletteCollectionView"
+                        HeightRequest="70"
+                        SelectionMode="Single"
+                        SelectionChanged="FarbPaletteCollectionView_SelectionChanged">
+
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="5" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Margin="5"
+                                        HeightRequest="60"
+                                        WidthRequest="60"
+                                        BackgroundColor="{Binding .}">  
+
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="21" />
+                                        </Border.StrokeShape>
+
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                    </ScrollView>
+
                 </VerticalStackLayout>
             </Frame>
 
             <Frame BorderColor="Black" BackgroundColor="#D2B8A3" CornerRadius="16" Padding="16">
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="15">
 
                    <Label
                     Text="Ausgabengrenze"
@@ -60,7 +93,10 @@
                    <Picker
                    x:Name="KategoriePicker"
                     Title="Kategorie auswählen"
-                    FontSize="16" />
+                    FontSize="16" 
+                    SelectedIndexChanged="KategoriePicker_SelectedIndexChanged"/>
+                    
+                    
 
                     <Entry
                     x:Name="AusgabengrenzeEntry"
